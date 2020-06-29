@@ -1,0 +1,9 @@
+// sorter.c GDB:
+
+#0  0x080485a3 in sort (a=0xffffd440, n=10) at sorter.c:39
+#1  0x08048539 in main () at sorter.c:26
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+// testQ.c GDB:
+
+

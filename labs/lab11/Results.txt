@@ -1,0 +1,26 @@
+Results for Tests on 5000 values
+
+Depth = depth of tree, Cost = average #comparisons per search
+
+
+             Ascending Order        Prefix Order        Random Order
+Insert
+Method       Depth      Cost     Depth      Cost     Depth      Cost
+
+L             5000    3114.5        13     11.75        28     15.95
+
+A             5000   1886.53      2954   1115.11        28     16.29
+
+R             2492     951.5      1774     674.1        27     15.15
+
+B              204     61.96        20     13.66        23     12.72
+
+S               33     23.61        29     23.09      1146     22.68
+
+V               13     11.78        14      12.1        15     11.79
+
+
+Notes (what the above indicates):
+- The bigger the depth the bigger the cost
+- Ascending order is often the often the worst in terms in terms of cost except for the AVL insertion method
+- Ironically the random order input is the most consistent in terms of cost

@@ -1,0 +1,11 @@
+A. Root: 12, 35, 60; Node: 1, 7, 8
+
+B. Root: 35; Node: 36, 42, 57
+
+C. Root: 8; Parent: 7
+
+D. Root: 35; Parent: 36 or 57
+
+E. 2-node: 1
+   3-node: 2
+   4-node: 1

@@ -1,0 +1,3 @@
+A. a,e,d,b,f,g,c,j,i,h
+
+B. a,b,e,d,c,f,g,h,j,i

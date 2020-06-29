@@ -1,0 +1,8 @@
+A.
+A, B, G, M, N, P, Q, V (2.5 length)
+
+B.
+V, G, K, J, H, G, F, A (3.1 length)
+
+C.
+R cannot be readed from the other nodes.

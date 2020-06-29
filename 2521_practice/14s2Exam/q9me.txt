@@ -1,0 +1,5 @@
+A. The option -o puts the executable file in "trav".
+
+B. The gcc command -c would produce Graph.o from Graph.c
+
+C. Creates a breakpoint which pauses the program execution just before the function myFun.

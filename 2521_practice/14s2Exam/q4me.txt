@@ -1,0 +1,13 @@
+1. A. Base cases:
+      if (lo > hi)
+      if (lo == hi && key == a[lo])
+      if (lo == hi && key != a[lo])
+      if (lo < hi && key == a[mid])
+   
+   B. i.   2 calls
+      ii.  4 calls
+      iii. 3 calls
+      
+   C. 1 call and log(10) calls.
+   
+   D. 1 call and log(N) calls.

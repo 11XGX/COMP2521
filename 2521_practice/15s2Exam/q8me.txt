@@ -1,0 +1,21 @@
+A.
+Average length is 9.
+
+B.
+4 items
+
+C.
+10 items
+
+D.
+O(N)
+
+E.
+O(1)
+
+F.
+int i;
+int hash;
+for (i = 0; i < 101; i++) {
+    hash = hash % 1;
+}

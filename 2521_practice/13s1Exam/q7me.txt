@@ -1,0 +1,10 @@
+A.
+A: 7,12,17
+B: 1,3,5
+C: 10,14,15
+D: 21,25,29
+
+B.
+Red-black tree nodes include an extra variable for colour, as well as the standard value and pointers stored by a standard binary search tree node.
+
+C. No, because 3-nodes can have 2 possible represetations in a red-black tree.

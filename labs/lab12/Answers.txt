@@ -1,0 +1,382 @@
+
+
+Qa. The max chain length for HT size of 85711 is 25.
+The max chain length generally gets smaller if the ratio between distinct words
+and slots is 1:1, show below in by comparing figure 1 and 2 which compares
+100000 slots vs 400000 slots. Figure 2 having more slots and a ratio closer to
+1:1 should have a smaller max chain length and does. Using the Gprof function
+we can also see it takes less time for the HashTableStats function to complete
+in figure 2
+
+Qb. Comparing Figure 2 and 3, we can see that figure 3 doesnt have significantly
+more slots than figure 2 yet the max chain length and time to complete are quite
+noticably less. This provides strong evidence to show that prime slot amounts
+lead to better hash tables. Furthermore, Figure 4 should have a higher max chain
+length and time as it is further away from a 1:1 ratio yet it does not. I think
+this confirms the generally prime slotted HashTables are more efficient.
+
+Qc. ./mkwords 20 3 | ./words - 5, output shown in Figure 5
+
+Qd. It if very clear that when running a large non-prime number as the number
+of slots it becomes significantly sub-optimal. Compare Figures 6 and 7
+
+Qf. Instead of an array of lists, having a BST of lists that way searching
+the nodes would be easier
+
+
+
+FIGURE 1:
+
+Hash Table Stats:
+Number of slots = 100000
+Number of items = 857424
+Chain length distribution
+  Length  #Chains
+       0      63
+       1      380
+       2      1339
+       3      3329
+       4      5849
+       5      8645
+       6      11012
+       7      12045
+       8      11808
+       9      10668
+       10      8932
+       11      7141
+       12      5452
+       13      3979
+       14      2871
+       15      1991
+       16      1453
+       17      929
+       18      647
+       19      467
+       20      311
+       21      216
+       22      123
+       23      109
+       24      70
+       25      52
+       26      41
+       27      22
+       28      25
+       29      14
+       30      6
+       31      4
+       32      3
+       33      1
+       35      2
+       36      1
+Testing completed OK
+
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls  ms/call  ms/call  name
+ 51.83      0.45     0.45  2000004     0.00     0.00  ListSearch
+ 16.13      0.59     0.14  2000004     0.00     0.00  hash
+ 10.37      0.68     0.09   100000     0.00     0.00  dropList
+  9.21      0.76     0.08        1    80.17    80.17  HashTableStats
+  6.91      0.82     0.06  1000000     0.00     0.00  HashTableInsert
+  2.30      0.84     0.02 10209718     0.00     0.00  cmp
+  1.15      0.85     0.01  1000000     0.00     0.00  newItem
+  1.15      0.86     0.01        1    10.02   100.21  dropHashTable
+  1.15      0.87     0.01                             main
+  0.00      0.87     0.00  1000004     0.00     0.00  HashTableSearch
+  0.00      0.87     0.00  1000001     0.00     0.00  ItemGet
+  0.00      0.87     0.00   857424     0.00     0.00  ListInsert
+  0.00      0.87     0.00   857424     0.00     0.00  dropItem
+  0.00      0.87     0.00   100000     0.00     0.00  newList
+  0.00      0.87     0.00        1     0.00     0.00  newHashTable
+
+
+
+FIGURE 2:
+
+Hash Table Stats:
+Number of slots = 400000
+Number of items = 857424
+Chain length distribution
+  Length  #Chains
+       0      53644
+       1      101973
+       2      102409
+       3      71093
+       4      39086
+       5      18632
+       6      7798
+       7      3230
+       8      1294
+       9      509
+       10      208
+       11      79
+       12      27
+       13      10
+       14      5
+       15      2
+       16      1
+Testing completed OK
+
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls  ms/call  ms/call  name
+ 43.84      0.28     0.28  2000004     0.00     0.00  hash
+ 31.31      0.48     0.20  2000004     0.00     0.00  ListSearch
+ 10.96      0.55     0.07   400000     0.00     0.00  dropList
+  6.26      0.59     0.04        1    40.08    40.08  HashTableStats
+  4.70      0.62     0.03  1000000     0.00     0.00  HashTableInsert
+  1.57      0.63     0.01  1000000     0.00     0.00  newItem
+  1.57      0.64     0.01        1    10.02    80.17  dropHashTable
+  0.00      0.64     0.00  4178529     0.00     0.00  cmp
+  0.00      0.64     0.00  1000004     0.00     0.00  HashTableSearch
+  0.00      0.64     0.00  1000001     0.00     0.00  ItemGet
+  0.00      0.64     0.00   857424     0.00     0.00  ListInsert
+  0.00      0.64     0.00   857424     0.00     0.00  dropItem
+  0.00      0.64     0.00   400000     0.00     0.00  newList
+  0.00      0.64     0.00        1     0.00     0.00  newHashTable
+
+
+
+ FIGURE 3:
+
+ Hash Table Stats:
+ Number of slots = 400837
+ Number of items = 857424
+ Chain length distribution
+   Length  #Chains
+        0      47251
+        1      100881
+        2      107773
+        3      77228
+        4      41365
+        5      17528
+        6      6293
+        7      1845
+        8      546
+        9      101
+        10      24
+        11      1
+        12      1
+ Testing completed OK
+
+
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls  ms/call  ms/call  name
+ 30.71      0.19     0.19  2000004     0.00     0.00  hash
+ 25.86      0.35     0.16  1000000     0.00     0.00  HashTableInsert
+ 20.20      0.48     0.13  2000004     0.00     0.00  ListSearch
+ 12.93      0.56     0.08   400837     0.00     0.00  dropList
+  8.08      0.61     0.05        1    50.10    50.10  HashTableStats
+  1.62      0.62     0.01  4025408     0.00     0.00  cmp
+  0.81      0.62     0.01                             ListDelete
+  0.00      0.62     0.00  1000004     0.00     0.00  HashTableSearch
+  0.00      0.62     0.00  1000001     0.00     0.00  ItemGet
+  0.00      0.62     0.00  1000000     0.00     0.00  newItem
+  0.00      0.62     0.00   857424     0.00     0.00  ListInsert
+  0.00      0.62     0.00   857424     0.00     0.00  dropItem
+  0.00      0.62     0.00   400837     0.00     0.00  newList
+  0.00      0.62     0.00        1     0.00    80.17  dropHashTable
+  0.00      0.62     0.00        1     0.00     0.00  newHashTable
+
+
+FIGURE 4:
+
+Hash Table Stats:
+Number of slots = 85711
+Number of items = 857424
+Chain length distribution
+  Length  #Chains
+       0      2
+       1      45
+       2      183
+       3      657
+       4      1573
+       5      3234
+       6      5340
+       7      7774
+       8      9770
+       9      10580
+       10      10715
+       11      9806
+       12      8233
+       13      6224
+       14      4414
+       15      2956
+       16      1889
+       17      1134
+       18      592
+       19      297
+       20      165
+       21      68
+       22      39
+       23      11
+       24      8
+       25      2
+Testing completed OK
+
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls  ms/call  ms/call  name
+ 40.83      0.33     0.33  2000004     0.00     0.00  ListSearch
+ 30.93      0.58     0.25  2000004     0.00     0.00  hash
+  8.66      0.65     0.07        1    70.14    70.14  HashTableStats
+  7.42      0.71     0.06  1000000     0.00     0.00  HashTableInsert
+  4.95      0.75     0.04    85711     0.00     0.00  dropList
+  3.09      0.78     0.03 10954954     0.00     0.00  cmp
+  1.24      0.79     0.01  1000004     0.00     0.00  HashTableSearch
+  1.24      0.80     0.01   857424     0.00     0.00  ListInsert
+  1.24      0.81     0.01        1    10.02    50.10  dropHashTable
+  0.62      0.81     0.01                             ListLength
+  0.00      0.81     0.00  1000001     0.00     0.00  ItemGet
+  0.00      0.81     0.00  1000000     0.00     0.00  newItem
+  0.00      0.81     0.00   857424     0.00     0.00  dropItem
+  0.00      0.81     0.00    85711     0.00     0.00  newList
+  0.00      0.81     0.00        1     0.00     0.00  newHashTable
+
+FIGURE 5:
+
+Hash Table Stats:
+Number of slots = 5
+Number of items = 20
+Chain length distribution
+  Length  #Chains
+       1      1
+       4      2
+       5      1
+       6      1
+Testing completed OK
+
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls  Ts/call  Ts/call  name
+  0.00      0.00     0.00      129     0.00     0.00  cmp
+  0.00      0.00     0.00       44     0.00     0.00  ListSearch
+  0.00      0.00     0.00       44     0.00     0.00  hash
+  0.00      0.00     0.00       24     0.00     0.00  HashTableSearch
+  0.00      0.00     0.00       21     0.00     0.00  ItemGet
+  0.00      0.00     0.00       20     0.00     0.00  HashTableInsert
+  0.00      0.00     0.00       20     0.00     0.00  ListInsert
+  0.00      0.00     0.00       20     0.00     0.00  dropItem
+  0.00      0.00     0.00       20     0.00     0.00  newItem
+  0.00      0.00     0.00        5     0.00     0.00  dropList
+  0.00      0.00     0.00        5     0.00     0.00  newList
+  0.00      0.00     0.00        1     0.00     0.00  HashTableStats
+  0.00      0.00     0.00        1     0.00     0.00  dropHashTable
+  0.00      0.00     0.00        1     0.00     0.00  newHashTable
+
+FIGURE 6:
+
+Hash Table Stats:
+Number of slots = 1048576
+Number of items = 5252075
+Chain length distribution
+  Length  #Chains
+       0      25519
+       1      82104
+       2      139069
+       3      167369
+       4      163169
+       5      138079
+       6      105762
+       7      75826
+       8      51287
+       9      33590
+       10      21288
+       11      13318
+       12      8506
+       13      5554
+       14      3657
+       15      2502
+       16      1803
+       17      1375
+       18      1051
+       19      811
+       20      650
+       21      557
+       22      471
+       23      393
+       24      341
+       25      278
+       26      231
+       27      221
+       28      163
+       29      151
+       30      153
+	   ......
+
+	   2034      1
+       2065      1
+       2077      1
+       2084      1
+       2120      1
+       2173      1
+       2198      1
+       3497      1
+       3540      1
+       4082      1
+       4479      1
+	   %   cumulative   self              self     total
+time   seconds   seconds    calls  ms/call  ms/call  name
+62.75      8.56     8.56 10504154     0.00     0.00  ListSearch
+18.83     11.13     2.57 10504154     0.00     0.00  hash
+4.80     11.79     0.66  1048576     0.00     0.00  dropList
+4.18     12.36     0.57  5252075     0.00     0.00  HashTableInsert
+3.96     12.90     0.54        1   540.00   540.00  HashTableStats
+3.44     13.37     0.47 258728702     0.00     0.00  cmp
+0.62     13.46     0.09  5252075     0.00     0.00  ListInsert
+0.48     13.52     0.07                             ListLength
+0.26     13.55     0.04  5252079     0.00     0.00  HashTableSearch
+0.22     13.59     0.03  5252076     0.00     0.00  ItemGet
+0.15     13.61     0.02  5252075     0.00     0.00  newItem
+0.15     13.62     0.02                             main
+0.07     13.63     0.01  1048576     0.00     0.00  newList
+0.07     13.64     0.01        1    10.00   665.00  dropHashTable
+0.04     13.65     0.01                             ListDelete
+0.00     13.65     0.00  5252075     0.00     0.00  dropItem
+0.00     13.65     0.00        1     0.00    10.00  newHashTable
+
+FIGURE 7:
+
+Hash Table Stats:
+Number of slots = 1048573
+Number of items = 5252075
+Chain length distribution
+  Length  #Chains
+       0      7226
+       1      35772
+       2      89435
+       3      146900
+       4      182833
+       5      181797
+       6      152354
+       7      109465
+       8      68972
+       9      38913
+       10      19587
+       11      9147
+       12      3909
+       13      1438
+       14      559
+       15      173
+       16      61
+       17      23
+       18      5
+       19      3
+       20      1
+
+
+  %   cumulative   self              self     total
+time   seconds   seconds    calls  ms/call  ms/call  name
+34.98      2.23     2.23 10504154     0.00     0.00  ListSearch
+34.74      4.46     2.22 10504154     0.00     0.00  hash
+9.86      5.08     0.63  1048573     0.00     0.00  dropList
+7.98      5.59     0.51        1   510.00   510.00  HashTableStats
+7.82      6.09     0.50  5252075     0.00     0.00  HashTableInsert
+1.17      6.17     0.07 36897911     0.00     0.00  cmp
+0.86      6.22     0.06  5252079     0.00     0.00  HashTableSearch
+0.63      6.26     0.04  5252075     0.00     0.00  newItem
+0.63      6.30     0.04                             main
+0.47      6.33     0.03  5252075     0.00     0.00  ListInsert
+0.39      6.36     0.03  5252076     0.00     0.00  ItemGet
+0.23      6.38     0.01  1048573     0.00     0.00  newList
+0.08      6.38     0.01  5252075     0.00     0.00  dropItem
+0.08      6.38     0.01                             ListDelete
+0.08      6.39     0.01                             ListLength
+0.00      6.39     0.00        1     0.00   635.00  dropHashTable
+0.00      6.39     0.00        1     0.00    15.00  newHashTable

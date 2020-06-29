@@ -1,0 +1,16 @@
+1.
+Operation             State of Queue after operation
+
+initially             --
+PQueueJoin(PQ, 'X')   X
+PQueueJoin(PQ, 'A')   A X
+PQueueJoin(PQ, 'J')   A J X
+PQueueLeave(PQ)       J X
+PQueueJoin(PQ, 'K')   J K X
+PQueueLeave(PQ)       K X
+PQueueLeave(PQ)       X
+
+2.
+Implement PQ by using an integer time variable.
+For a queue, the item with the lowest time value (oldest) should have the highest priority.
+For a stack, the item with the highest time value (most recent) should have the highest priority.

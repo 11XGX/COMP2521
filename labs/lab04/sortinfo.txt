@@ -1,0 +1,70 @@
+
+- Mergesort 
+- BubbleSort/SelectionSort should be slowest (n^2) for ascending (sorted) series.
+- QuickSort/ShellSort1/ShellSort2 should be quickest (nlog(n)) for ascending (sorted) series, but slowest
+  for descending (not sorted) series.
+- Unmodified bubble sort is the only unstable sort.
+- Randomised Quick Sort can help avoid worst case scenarios such as a perfectly sorted
+array (compared to Vanilla and Median of Three).
+- Shellsort Powers should be quicker than Shellsort Sedgewick on smaller datasets
+    
+- In best case (already sorted), (2) should be quicker than (1)
+    
+Pseudo-Bogo Sort - should be completely random in times on the same set of data.
+
+Bubble Sort/Selection Sort VERY SIMILAR (1)
+-------------------------------------------
+Bubble sort - almost always slower than selection sort.
+			- should be slowest (n^2) for ascending (sorted) series.
+			- is an unstable sort.
+			
+Selection sort - almost always quicker than selection sort.
+			   - should be slowest (n^2) for ascending (sorted) series.
+			   - is a stable sort.
+				
+Modified Bubble Sort/Insertion Sort VERY SIMILAR (2)
+----------------------------------------------------
+Modified bubble sort - almost always slower than insertion sort.
+
+Selection sort - almost always quicker than modified bubble sort.
+  
+Merge sort - should be quickest (nlog(n)) for all series  
+  
+Vanilla Quick Sort
+    normal quick sort (pivot is the last element)
+    
+Quick Sort Median of Three
+    pivot is the median of first last and middle elements
+    
+Randomised Quick Sort
+    list is shuffled then vanilla quick-sorted
+    
+Shell Sort Powers of Two Four
+    shell sort with intervals ..., 4096, 1024, 256, 64, 16, 4, 1
+    
+Shell Sort Sedgewick (Sedgewick-like)
+    shell sort with intervals ..., 4193, 1073, 281, 23, 8, 1
+
+
+Input	Initial	Has		AvgTime		AvgTime
+Size	Order	Dups	for sortA	for sortB
+10000	random	no		0.004sec
+10000	sorted	no		0.002sec
+10000	reverse	no		0.002sec
+10000	random	yes		0.003sec
+10000	sorted	yes		0.006sec
+10000	reverse	yes		0.006sec
+
+50000	random	no		0.007sec
+50000	sorted	no		0.006sec
+50000	reverse	no		0.006sec
+50000	random	yes		0.009sec
+50000	sorted	yes		0.006sec
+50000	reverse	yes		0.006sec
+
+100000	random	no		0.007sec
+100000	sorted	no		0.006sec
+100000	reverse	no		0.006sec
+100000	random	yes		0.009sec
+100000	sorted	yes		0.006sec
+100000	reverse	yes		0.006sec
